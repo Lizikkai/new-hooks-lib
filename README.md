@@ -2,11 +2,11 @@
 
 ## 安装
 ```bash
-npm install hook-lib
+npm install hooks-nice-use
 ```
 ## 引入
 ```ts
-import { useDevice, useEnv } from 'hook-lib'
+import { useDevice, useEnv } from 'hooks-nice-use'
 ```
 
 ## 示例
