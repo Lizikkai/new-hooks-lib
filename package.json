@@ -1,12 +1,16 @@
 {
   "name": "hooks-nice-use",
   "description": "share hooks lib",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Lizikkai/hook-lib.git"
+    "url": "git@github.com:Lizikkai/new-hooks-lib.git"
   },
+  "bugs": {
+    "url": "https://github.com/Lizikkai/new-hooks-lib/issues"
+  },
+  "homepage": "https://github.com/Lizikkai/new-hooks-lib#readme",
   "keywords": [
     "vue3",
     "hooks",
@@ -22,12 +26,12 @@
     "type-check": "vue-tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
-  "main": "./dist/hook-lib.umd.js",
-  "module": "./dist/hook-lib.es.js",
+  "main": "./dist/hooks-nice-use.umd.js",
+  "module": "./dist/hooks-nice-use.es.js",
   "exports": {
     ".": {
-      "import": "./dist/hook-lib.es.js",
-      "require": "./dist/hook-lib.umd.js",
+      "import": "./dist/hooks-nice-use.es.js",
+      "require": "./dist/hooks-nice-use.umd.js",
       "types": "./dist/index.d.ts"
     }
   },

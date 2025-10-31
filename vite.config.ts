@@ -22,8 +22,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      name: "HookLib",
-      fileName: (format) => `hook-lib.${format}.js`,
+      name: "HooksNiceUse",
+      fileName: (format) => `hooks-nice-use.${format}.js`,
       formats: ['es', 'umd']
     },
     rollupOptions: {
