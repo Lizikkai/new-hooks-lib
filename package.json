@@ -1,6 +1,6 @@
 {
-  "name": "@lizikai/vue3-hooks",
-  "description": "A vue3 hooks library",
+  "name": "hooks-nice-use",
+  "description": "share hooks lib",
   "version": "1.0.3",
   "type": "module",
   "repository": {
