@@ -10,11 +10,11 @@ export default defineConfig({
     dts({
       tsconfigPath: './tsconfig.build.json',
       entryRoot: 'src',
-      outDir: 'dist',
+      outDir: 'dist/types',
       include: ['src/**/*.ts'],
       exclude: ['src/**/*.vue', 'src/main.ts', 'src/App.vue', '**/*.test.ts', '**/*.spec.ts'],
       insertTypesEntry: true,
-      rollupTypes: true,
+      rollupTypes: false,
       cleanVueFileName: true,
       staticImport: true
     })
