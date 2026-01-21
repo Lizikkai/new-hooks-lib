@@ -24,7 +24,9 @@
     "dev": "vite",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
+    "clean:lib": "rimraf node_modules"
   },
   "main": "./dist/hooks-nice-use.umd.js",
   "module": "./dist/hooks-nice-use.es.js",

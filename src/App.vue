@@ -191,7 +191,9 @@
         <div>秒数: {{ timeDiff.seconds }}</div>
         <div>毫秒: {{ timeDiff.msecs }}</div>
       </div>
-      <button class="button" style="margin-right: 10px;" @click="startA">开始</button>
+      <button class="button" style="margin-right: 10px" @click="startA">
+        开始
+      </button>
       <button class="button stop" @click="stopA">暂停</button>
       <p style="font-size: 12px; color: #666; margin-top: 10px">
         实时显示到目标时间的倒计时，格式: 时:分:秒.毫秒
@@ -212,6 +214,7 @@ import {
   getDateDiffWithMsec,
   useInterval,
 } from "./index";
+import { chunk, compact, concat, difference, drop, dropRight, flattenDeep } from "./utils";
 
 // 设备检测
 const { isPC, isMobile } = useDevice();
@@ -240,9 +243,19 @@ const {
 
 // 时间差计算测试
 const timeDiff = ref({ hours: 0, minutes: 0, seconds: 0, msecs: 0 });
-const targetDate = ref(
-  new Date(Date.now() + 2 * 60 * 60 * 1000 + 30 * 60 * 1000 + 45 * 1000)
-); // 2小时30分45秒后
+
+// 后端返回的时间戳示例（毫秒级）
+// 实际使用时，从接口获取：const endTimeStamp = await api.getEndTime()
+const endTimeStamp =
+  Date.now() + 1 * 60 * 60 * 1000 + 2 * 60 * 1000 + 30 * 1000; // 模拟后端返回1分钟后的时间戳
+console.log("endTimeStamp ----->", endTimeStamp);
+
+// 方式1：如果后端返回毫秒级时间戳（13位），直接使用
+const targetDate = ref(new Date(endTimeStamp));
+
+// 方式2：如果后端返回秒级时间戳（10位），需要乘以1000
+// const endTimeStampInSeconds = 1737456789; // 假设后端返回秒级时间戳
+// const targetDate = ref(new Date(endTimeStampInSeconds * 1000));
 
 // 更新时间差的函数
 const updateTimeDiff = () => {
@@ -285,6 +298,25 @@ const resetCounters = () => {
   clickCount.value = 0;
   throttledCount.value = 0;
 };
+
+function 调你大爷的接口() {
+  const data = chunk([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const data1 = compact([0, 1, false, 2, "", 3, null, 4, undefined, 5, NaN, 6]);
+  const data2 = concat(Infinity, 1, 2, [3, 4], [5, 6], [7, 8, [9, 10]]);
+  const data3 = difference([2, 1, 3, 4, 5], [2, 3]);
+  const data4 = drop([1,2,3]);
+  const data5 = dropRight([1,2,3], 2);
+  const data6 = flattenDeep([1, [2, [3, [4]], 5]]);
+  console.log(data);
+  console.log(data1);
+  console.log(data2);
+  console.log(data3);
+  console.log('data4', data4);
+  console.log('data5', data5);
+  console.log('data6', data6);
+}
+
+调你大爷的接口();
 </script>
 
 <style scoped>
@@ -302,7 +334,7 @@ const resetCounters = () => {
 }
 
 .button.stop {
-    background: #e6a23c;
+  background: #e6a23c;
 }
 
 .button.disabled {
