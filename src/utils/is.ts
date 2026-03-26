@@ -7,9 +7,9 @@ export const isObjectLike = (value: any): boolean => {
 };
 
 export const isObject = (value: any): boolean => {
-    const type = typeof value;
-    return value != null && (type == 'object' || type == 'function');
-}
+  const type = typeof value;
+  return value != null && (type == "object" || type == "function");
+};
 
 const MAX_SAFE_INTEGER = 9007199254740991;
 export const isLength = (value: any): boolean => {
@@ -21,13 +21,13 @@ export const isLength = (value: any): boolean => {
   );
 };
 
-const asyncTag = '[object AsyncFunction]',
-      funcTag = '[object Function]',
-      genTag = '[object GeneratorFunction]',
-      proxyTag = '[object Proxy]';
+const asyncTag = "[object AsyncFunction]",
+  funcTag = "[object Function]",
+  genTag = "[object GeneratorFunction]",
+  proxyTag = "[object Proxy]";
 
 export const isFunction = (value: any): boolean => {
-    if(!isObject(value)) return false
-    const tag = getTag(value);
-    return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-}
+  if (!isObject(value)) return false;
+  const tag = getTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+};

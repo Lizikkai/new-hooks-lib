@@ -1,7 +1,7 @@
 <template>
   <div style="padding: 20px; font-family: Arial, sans-serif">
     <h2>Vue3 Hooks 测试</h2>
-
+    <div>{{ `${width}-${height}` }}</div>
     <!-- 设备检测 -->
     <div
       style="
@@ -213,9 +213,12 @@ import {
   useCountDown,
   getDateDiffWithMsec,
   useInterval,
+  useWindowSize,
 } from "./index";
 import { chunk, compact, concat, difference, drop, dropRight, flattenDeep } from "./utils";
 
+
+const { width, height } = useWindowSize();
 // 设备检测
 const { isPC, isMobile } = useDevice();
 
