@@ -2,6 +2,32 @@
   <div style="padding: 20px; font-family: Arial, sans-serif">
     <h2>Vue3 Hooks 测试</h2>
     <div>{{ `${width}-${height}` }}</div>
+    <!-- 主题切换测试 -->
+    <div
+      style="
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      "
+    >
+      <h3>主题切换测试 (useTheme)</h3>
+      <div>当前主题: {{ theme }}</div>
+      <div>可用主题: {{ themeNames.join(" / ") }}</div>
+      <div class="theme-preview">
+        <div class="theme-preview-title">主题变量预览区域</div>
+        <div class="theme-preview-desc">
+          当前主色: <span class="theme-preview-primary">var(--theme-primary)</span>
+        </div>
+        <div class="theme-actions">
+          <button class="button theme-button" @click="toggleTheme">循环切换主题</button>
+          <button class="button" @click="setTheme('light')">切换浅色</button>
+          <button class="button stop" @click="setTheme('dark')">切换深色</button>
+          <button class="button ocean" @click="setTheme('ocean')">切换海洋</button>
+        </div>
+      </div>
+    </div>
+
     <!-- 设备检测 -->
     <div
       style="
@@ -214,11 +240,35 @@ import {
   getDateDiffWithMsec,
   useInterval,
   useWindowSize,
+  useTheme,
 } from "./index";
 import { chunk, compact, concat, difference, drop, dropRight, flattenDeep } from "./utils";
 
 
 const { width, height } = useWindowSize();
+
+// 主题切换测试
+const { theme, themeNames, setTheme, toggleTheme } = useTheme({
+  defaultTheme: "light",
+  themes: {
+    light: {
+      "--theme-primary": "#1677ff",
+      "--theme-bg": "#ffffff",
+      "--theme-text": "#1f2329",
+    },
+    dark: {
+      "--theme-primary": "#7aa2ff",
+      "--theme-bg": "#141414",
+      "--theme-text": "#f5f7fa",
+    },
+    ocean: {
+      "--theme-primary": "#0ea5e9",
+      "--theme-bg": "#ecfeff",
+      "--theme-text": "#0f172a",
+    },
+  },
+});
+
 // 设备检测
 const { isPC, isMobile } = useDevice();
 
@@ -361,5 +411,43 @@ function 调你大爷的接口() {
 .button2.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.button.ocean {
+  background: #0ea5e9;
+}
+
+.theme-preview {
+  margin-top: 10px;
+  border: 1px solid var(--theme-primary);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-preview-title {
+  font-weight: 700;
+}
+
+.theme-preview-desc {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.theme-preview-primary {
+  color: var(--theme-primary);
+  font-weight: 700;
+}
+
+.theme-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.theme-button {
+  background: var(--theme-primary);
 }
 </style>

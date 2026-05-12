@@ -1,6 +1,6 @@
-export function promiseAll<const T extends readonly unknown[]>(
-  promises: T,
-): Promise<{ [K in keyof T]: Awaited<T[K]> }>;
+export function promiseAll<T extends readonly unknown[]>(
+  promises: readonly [...T],
+): Promise<{ -readonly [K in keyof T]: Awaited<T[K]> }>;
 export function promiseAll<T>(
   promises: Iterable<T | PromiseLike<T>>,
 ): Promise<Awaited<T>[]>;
